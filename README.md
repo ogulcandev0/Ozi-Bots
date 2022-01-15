@@ -12,7 +12,7 @@ Not: Yeni Eklediğim LeaderBoard Güncelleme için bot ownerı 2 adet . attıkta
 
 Thearkxd ve Aris'e codeları için tesekkürler...
 
-![image](https://user-images.githubusercontent.com/92666466/149625507-0d1cd9db-d212-47d8-8bfc-65de830fe92d.png)
+![image](https://user-images.githubusercontent.com/92666466/149625604-1a2b4481-0357-410d-8a01-4c9b209ed56f.png)
 ![image](https://user-images.githubusercontent.com/92666466/148831644-21111585-07a7-4871-8a4a-280c0cdad3e6.png)
 ![image](https://user-images.githubusercontent.com/92666466/147513264-07179317-e51a-43d1-bace-25d611c02c19.png)
 ![image](https://user-images.githubusercontent.com/92666466/145694537-015938d5-b724-47cc-b93a-bb63d95288fe.png)
