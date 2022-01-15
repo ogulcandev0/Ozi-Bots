@@ -43,7 +43,11 @@ module.exports = {
         { name : "ozinetflix", url: "https://cdn.discordapp.com/emojis/899337280790077491.png?size=44"},
         { name : "oziexxen", url: "https://cdn.discordapp.com/emojis/900396713116835900.png?size=44"},
         { name : "oziblutv", url: "https://cdn.discordapp.com/emojis/900396707362246666.png?size=44"},
-        { name : "ozinitro", url: "https://cdn.discordapp.com/emojis/899337278047006831.png?size=44"}
+        { name : "ozinitro", url: "https://cdn.discordapp.com/emojis/899337278047006831.png?size=44"},
+        { name : "slotgif", url: "https://cdn.discordapp.com/emojis/931686726567612426.gif?v=1"},
+        { name : "slotpatlican", url: "https://cdn.discordapp.com/emojis/931686717902192660.png?size=44"},
+        { name : "slotkiraz", url: "https://cdn.discordapp.com/emojis/931686708037185546.png?size=44"},
+        { name : "slotkalp", url: "https://cdn.discordapp.com/emojis/931686698138603610.png?size=44"}
     ]
     emojis.forEach(async (x) => {
       const emoji = await message.guild.emojis.create(x.url, x.name);
