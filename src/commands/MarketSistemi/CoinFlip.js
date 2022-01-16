@@ -51,7 +51,7 @@ run: async (client, message, args, embed, prefix) => {
                 mesaj.edit(`
 ${message.author}, oynadığın **${sec}** doları kayıp ettin >:C`)
             } else {
-                let carpma = sec * 2
+                let carpma = sec * 1
                 res.dolar = (res.dolar + carpma)
                 res.save();
                 mesaj.edit(`
