@@ -45,7 +45,7 @@ run: async (client, message, args, embed, prefix) => {
             //    mesaj.delete();
 
             let randomizeCoinCal = Math.floor(Math.random() * 10) + 1;
-            if(randomizeCoinCal <= 5) {
+            if(randomizeCoinCal <= 4) {
                 res.dolar = (res.dolar - sec)
                 res.save();
                 mesaj.edit(`
