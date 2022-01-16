@@ -93,7 +93,7 @@ kayitchannel.wsend(`
 ${member.guild.name}'e Hoş geldin ${member} biz de seni bekliyorduk, hesabın __${memberGün} ${memberAylar} ${memberTarih}__ tarihinde \`` + moment(member.user.createdTimestamp).fromNow() + `\` oluşturulmuş ${guvenilirlik ? `Şüpheli! ${red}` : `Güvenli! ${green}` }\n
 Sunucumuza **${member.guild.name}** üyesinin davetiyle katıldın ve seninle birlikte ailemiz ${üyesayısı} kişi oldu!\n
 Sunucu kurallarımız ${kurallar} kanalında belirtilmiştir. Unutma sunucu içerisinde ki \`ceza-i işlemler\` kuralları okuduğunu varsayarak gerçekleştirilecek.\n
-Tagımıza ulaşmak için herhangi bir kanala \`.tag\` yazabilirsiniz. :tada: :tada: :tada:`);
+Tagımıza ulaşmak için herhangi bir kanala \`.tag\` yazabilirsiniz. ${tagModedata ? tagModedata.tagMode === true ? `(**Şuan da taglı alımdayız**)`:``:``} :tada: :tada: :tada:`);
 channel.wsend(`${member}, sunucuya katıldı! Davet Eden: **Sunucu Özel URL** :tada:`)
 return }
 if (!invite.inviter) return;
@@ -113,7 +113,7 @@ kayitchannel.wsend(`
 ${member.guild.name}'e Hoş geldin ${member} biz de seni bekliyorduk, hesabın __${memberGün} ${memberAylar} ${memberTarih}__ tarihinde \`` + moment(member.user.createdTimestamp).fromNow() + `\` oluşturulmuş ${guvenilirlik ? `Şüpheli! ${red}` : `Güvenli! ${green}` }\n
 Sunucumuza **${invite.inviter}** üyesinin davetiyle katıldın ve seninle birlikte ailemiz ${üyesayısı} kişi oldu!\n
 Sunucu kurallarımız ${kurallar} kanalında belirtilmiştir. Unutma sunucu içerisinde ki \`ceza-i işlemler\` kuralları okuduğunu varsayarak gerçekleştirilecek.\n
-Tagımıza ulaşmak için herhangi bir kanala \`.tag\` yazabilirsiniz. :tada: :tada: :tada:`);
+Tagımıza ulaşmak için herhangi bir kanala \`.tag\` yazabilirsiniz. ${tagModedata ? tagModedata.tagMode === true ? `(**Şuan da taglı alımdayız**)`:``:``} :tada: :tada: :tada:`);
 channel.wsend(`${member}, ${invite.inviter.tag} davetiyle katıldı! (**${total}**)`)
 }
 await coin.findOneAndUpdate({ guildID: member.guild.id, userID: invite.inviter.id }, { $inc: { coin: 1 } }, { upsert: true });
