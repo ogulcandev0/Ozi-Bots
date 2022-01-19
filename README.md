@@ -8,7 +8,7 @@
 
 - Events Select Menu de ki rol idleri doldurmanız lazım, emoji sunucu ayar vesaire ayarladıktan sonra baslatmaya geldik npm i yapıyoruz ardından axios modülü yüklenmediği için npm i axios yapiyoruz eğer canvas yüklenmezse bazılarında hata oluyomus npm i canvas yapabilirsiniz botunuz hazır esenlikle kalın.
 
-Not: Yeni Eklediğim LeaderBoard Güncelleme için bot ownerı 2 adet . attıktan sonra botun mesaj idlerini kopyalayıp ayarlardaki LeaderBoard Mesaj id kısımlarına girebilirler.
+Not: Yeni Eklediğim LeaderBoard Güncelleme için bot ownerı 2 adet . attıktan sonra botun mesaj idlerini kopyalayıp ayarlardaki ChatMsgListID VoiceMsgListID kısımlarına girebilirler. / ChatLeaderBoard ve VoiceLeaderBoard 2 adet . atılacak kanal id girilecektir. 
 
 Thearkxd ve Aris'e codeları için tesekkürler...
 
