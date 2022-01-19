@@ -1,3 +1,6 @@
+const { Database } = require("ark.db");
+const db = new Database("/src/configs/emojis.json");
+
 module.exports = {
   conf: {
     aliases: [],
@@ -30,11 +33,9 @@ module.exports = {
         { name: "fillStart", url: "https://cdn.discordapp.com/emojis/899339278000222249.gif?size=44" },
         { name: "emptyEnd", url: "https://cdn.discordapp.com/emojis/899340050226118737.png?size=44" },
         { name: "fillEnd", url: "https://cdn.discordapp.com/emojis/862062197776580618.gif?size=96" },
-        { name: "pembeicon", url: "https://cdn.discordapp.com/emojis/899339236724068372.png?size=44" },
         { name: "xp", url: "https://cdn.discordapp.com/emojis/838468875825446922.gif?v=1" },
         { name: "gulucuk", url: "https://cdn.discordapp.com/emojis/838469248602865735.png?v=1" },
         { name: "mesaj2", url: "https://cdn.discordapp.com/emojis/838468915814334464.gif?v=1" },
-        { name: "rewards", url: "https://cdn.discordapp.com/emojis/838468721516216350.gif?v=1" },
         { name: "altin", url: "https://cdn.discordapp.com/emojis/836694825243508756.gif?v=1" },
         { name: "altin2", url: "https://cdn.discordapp.com/emojis/836694821128372224.gif?v=1" },
         { name: "voice", url: "https://cdn.discordapp.com/emojis/841076020399308831.png?v=1" },
@@ -49,8 +50,10 @@ module.exports = {
         { name : "slotkiraz", url: "https://cdn.discordapp.com/emojis/931686708037185546.png?size=44"},
         { name : "slotkalp", url: "https://cdn.discordapp.com/emojis/931686698138603610.png?size=44"}
     ]
-    emojis.forEach(async (x) => {
+ emojis.forEach(async (x) => {
+      if (message.guild.emojis.cache.find((e) => x.name === e.name)) return db.set(x.name, message.guild.emojis.cache.find((e) => x.name === e.name).toString());
       const emoji = await message.guild.emojis.create(x.url, x.name);
+      await db.set(x.name, emoji.toString());
       message.channel.send(`\`${x.name}\` isimli emoji oluşturuldu! (${emoji.toString()})`);
     });
     },
