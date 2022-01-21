@@ -89,7 +89,7 @@ Tagı olup rolü olmayan ${taglilar.size} kullanıcıya rol verildi.
 Tag Rolü verilen kullanıcılar;
 ${taglilar.map(x => x || "Rolü olmayan Kullanıcı bulunmamaktadır.")}`)
 
-    message.guild.members.cache.filter(s => s.user.username.includes(ayar.tag) && !s.roles.cache.has(ekipRolu)).map(x=> x.roles.add(ayar.ekipRolu))                
+    message.guild.members.cache.filter(s => s.user.username.includes(ayar.tag) && !s.roles.cache.has(ekipRolu)).map(x=> x.roles.add(ekipRolu))                
     }
 
     if (button.id === 'kayıtsızdagit') {
