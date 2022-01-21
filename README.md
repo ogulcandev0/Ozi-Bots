@@ -10,7 +10,8 @@
 
 Not: Yeni Eklediğim LeaderBoard Güncelleme için bot ownerı 2 adet . attıktan sonra botun mesaj idlerini kopyalayıp ayarlardaki ChatMsgListID VoiceMsgListID kısımlarına girebilirler. / ChatLeaderBoard ve VoiceLeaderBoard 2 adet . atılacak kanal id girilecektir. 
  
-Not: Aşağıdaki hata için veya welome mesaj sorunu için .ytag ekle sil yapmanız gerekmektedir.
+Not: Aşağıdaki hata için veya welcome mesaj sorunu için .ytag ekle sil yapmanız gerekmektedir.
+
 ![image](https://user-images.githubusercontent.com/92666466/150496311-fa4725af-1d36-4004-b457-bcacfaee238b.png)
 
 
