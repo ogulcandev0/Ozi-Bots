@@ -9,8 +9,10 @@
 - Events Select Menu de ki rol idleri doldurmanız lazım, emoji sunucu ayar vesaire ayarladıktan sonra baslatmaya geldik npm i yapıyoruz ardından axios modülü yüklenmediği için npm i axios yapiyoruz eğer canvas yüklenmezse bazılarında hata oluyomus npm i canvas yapabilirsiniz botunuz hazır esenlikle kalın.
 
 Not: Yeni Eklediğim LeaderBoard Güncelleme için bot ownerı 2 adet . attıktan sonra botun mesaj idlerini kopyalayıp ayarlardaki ChatMsgListID VoiceMsgListID kısımlarına girebilirler. / ChatLeaderBoard ve VoiceLeaderBoard 2 adet . atılacak kanal id girilecektir. 
+ 
+Not: Aşağıdaki hata için veya welome mesaj sorunu için .ytag ekle sil yapmanız gerekmektedir.
+![image](https://user-images.githubusercontent.com/92666466/150496311-fa4725af-1d36-4004-b457-bcacfaee238b.png)
 
-Thearkxd ve Aris'e codeları için tesekkürler...
 
 ![image](https://user-images.githubusercontent.com/92666466/149677506-fa4dfc92-2815-40ec-bc9b-88675b96cc8a.png)
 ![image](https://user-images.githubusercontent.com/92666466/149625604-1a2b4481-0357-410d-8a01-4c9b209ed56f.png)
@@ -38,3 +40,6 @@ Thearkxd ve Aris'e codeları için tesekkürler...
 ![image](https://user-images.githubusercontent.com/92666466/139575381-c6cef99a-3dd2-4c43-b208-e7faa3233774.png)
 ![image](https://user-images.githubusercontent.com/92666466/139575656-0f8e35da-e696-4a6a-a3c7-5342af53de8d.png)
 ![image](https://user-images.githubusercontent.com/92666466/139575672-a7f84db7-98af-46c5-9f37-b2dbfc5fd729.png)
+
+Thearkxd ve Aris'e codeları için tesekkürler...
+
