@@ -4,6 +4,9 @@
 - Sizlerle geliştirmiş olduğum botlardan biriyle tanıştırmak istiyorum.. 
 - Invite, Moderasyon, Butonlu Register /Oto Register, Stats, Buton sistemleri.
 
+# Ekip Version
+[Ozi-Bots-Ekip](https://github.com/JaylenOzi/Ozi-Bots-Ekip)  
+
 # Yapmanız gereken adımlar
 
 - Events Select Menu de ki rol idleri doldurmanız lazım, emoji sunucu ayar vesaire ayarladıktan sonra baslatmaya geldik npm i yapıyoruz ardından axios modülü yüklenmediği için npm i axios yapiyoruz eğer canvas yüklenmezse bazılarında hata oluyomus npm i canvas yapabilirsiniz botunuz hazır esenlikle kalın.
