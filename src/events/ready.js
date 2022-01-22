@@ -45,9 +45,9 @@ module.exports = async () => {
   
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-     setInterval(() => { TagAlıncaKontrol(); }, 15 * 1000);
-     setInterval(() => { TagBırakanKontrol(); }, 10 * 1000);
-     setInterval(() => { RolsuzeKayitsizVerme(); }, 3 * 1000);
+     setInterval(() => { TagAlıncaKontrol(); }, 20 * 1000);
+     setInterval(() => { TagBırakanKontrol(); }, 15 * 1000);
+     setInterval(() => { RolsuzeKayitsizVerme(); }, 10 * 1000);
 
   async function RolsuzeKayitsizVerme()  { // Rolü olmayanı kayıtsıza atma
     
