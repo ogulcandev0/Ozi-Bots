@@ -54,7 +54,7 @@ const inviterData = await inviterSchema.findOne({ guildID: message.guild.id, use
         for (var i = 0; i <= voiceUserParentData.length; i++) {
           voiceStat += voiceUserParentData[i] ? voiceUserParentData[i].parentData : 0;
         }
-        return moment.duration(voiceStat).format("H [saat], m [dakika] s [saniye]");
+        return moment.duration(voiceStat).format("H [saat], m [dakika]");
       };
       
       let currentRank = client.ranks.filter(x => (coinData ? coinData.coin : 0) >= x.coin);
@@ -168,7 +168,7 @@ ${yetkiData ? `${yetkiData.yetkis.length} kişi` : "Veri bulunmuyor."}
       ${miniicon} Davetler: \`${total} (Puan Etkisi: +${total*15})\`
       ${miniicon} Yetkililer: \`${yetkiData ? yetkiData.yetkis.length : 0} kişi (Puan Etkisi: +${yetkiData ? yetkiData.yetkis.length*30 : 0})\`
       ${miniicon} Chat Puan: \`${messageData ? messageData.topStat : 0} mesaj (Puan Etkisi: +${messageData ? messageData.topStat*2 : 0})\`
-      ${miniicon} Sesli Puan: \`${moment.duration(voiceData ? voiceData.topStat : 0).format("m")} dakika (Puan Etkisi: +${moment.duration(voiceData ? voiceData.topStat : 0).format("m")*4})\`
+      ${miniicon} Sesli Puan: \`${moment.duration(voiceData ? voiceData.topStat : 0).format("h")} saat (Puan Etkisi: +${moment.duration(voiceData ? voiceData.topStat : 0).format("h")*240})\`
        `, false)
       
       .addField(`${star} **Yetki Durumu:**`, `
@@ -193,7 +193,7 @@ ${miniicon} Kayıt: (\`Puan Etkisi: +${toplamData ? toplamData.toplams.length*5.
 ${miniicon} Taglı: (\`Puan Etkisi: +${taggedData ? taggedData.taggeds.length*25 : 0}\`)
 ${miniicon} Davet: (\`Puan Etkisi: +${total*15}\`)
 ${miniicon} Yetkili: (\`Puan Etkisi: +${yetkiData ? yetkiData.yetkis.length*30 : 0}\`)
-${miniicon} Toplam Ses: (\`Puan Etkisi: +${moment.duration(voiceData ? voiceData.topStat : 0).format("m")*4}\`)
+${miniicon} Toplam Ses: (\`Puan Etkisi: +${moment.duration(voiceData ? voiceData.topStat : 0).format("h")*240}\`)
 ${miniicon} Toplam Mesaj: (\`Puan Etkisi: +${messageData ? messageData.topStat*2 : 0}\`)
 ${miniicon} Toplam Aldığın Cezalar : ${cezapuanData ? cezapuanData.cezapuan.length : 0} (\`Toplam ${cezaData ? cezaData.ceza.length : 0}\`)
  `, false)
