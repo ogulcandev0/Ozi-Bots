@@ -1,37 +1,123 @@
-const Discord = require("discord.js")
-const {  kirmiziok, star, miniicon } = require("../../configs/emojis.json");
+const { Discord, MessageAttachment, MessageEmbed } = require('discord.js');
+const { ChartJSNodeCanvas } = require("chartjs-node-canvas");
+const conf = require("../../configs/sunucuayar.json")
+const { partner, online, duyuru, channel } = require("../../configs/emojis.json")
 module.exports = {
-    conf: {
-      aliases: ["ekip-ses"],
-      name: "ekip-ses",
-      help: "ekip-ses"
-    },
-  
-    run: async (client, message, args, embed) => {
+  conf: {
+    aliases: ["ekip-all"],
+    name: "ekip-all",
+    help: "ekip-all"
+  },
 
-        if (!message.member.hasPermission("MANAGE_ROLES")) return;
-        let ShewTeam = message.guild.roles.cache.get("901557772905242707")
-        let THETeam = message.guild.roles.cache.get("899273632558231587")
+  run: async (client, message, args ) => {
 
-        let teamRoles = message.mentions.roles.first() || message.guild.roles.cache.find(role => role.name === args.join(' ')) || message.guild.roles.cache.get(args[0]);
-        if (args[0]) { //
-            let mentionRole = message.guild.members.cache.filter(x => x.roles.cache.has(teamRoles.id)).size
-            const Embed = new Discord.MessageEmbed()
-            .setAuthor(message.guild.name, message.guild.iconURL({dynamic: true, size: 2048}))
-            .setThumbnail(message.guild.iconURL({dynamic: true, size: 2048}))
-            .setDescription(`${star} ${teamRoles} adlı rol için detaylı bilgilendirme:\n\n${miniicon} Toplam bu role sahip üye: **${mentionRole}**\n${miniicon} Sunucuda ki aktif üye: **${message.guild.members.cache.filter(x => x.roles.cache.has(teamRoles.id) && x.user.presence.status !== "offline").size}**\n${miniicon} Sesteki üye sayısı: **${message.guild.members.cache.filter(x => x.roles.cache.has(teamRoles.id) && x.voice.channel).size}**\n${miniicon} Sunucu sembolüne sahip kullanıcı sayısı: **${message.guild.members.cache.filter(x => x.roles.cache.has(teamRoles.id) && x.user.username.includes('✬')).size}**\n${miniicon} Seste olmayan aktif kullanıcı sayısı: **${message.guild.members.cache.filter(x => x.roles.cache.has(teamRoles.id) && !x.voice.channel && x.user.presence.status !== "offline").size}**\n${miniicon} Erkek üye sayısı: **${message.guild.members.cache.filter(x => x.roles.cache.has(teamRoles.id) && x.roles.cache.has("899273632541470750")).size}**\n${miniicon} Kadın üye sayısı: **${message.guild.members.cache.filter(x => x.roles.cache.has(teamRoles.id) && x.roles.cache.has("899273632541470751")).size}**\n───────────────\n${star} Ekip üyelerinin seste bulunma oranı: **%${parseInt(message.guild.members.cache.filter(x => x.roles.cache.has(teamRoles.id) && x.voice.channel).size / message.guild.members.cache.filter(r => r.roles.cache.has(teamRoles.id)).size * 100)}**`)
-            .setColor(message.member.displayHexColor)
-            message.channel.send(Embed).then(m => message.react(this.client.ok))
-        } else if (!args[0]) {
-            const TeamEmbed = new Discord.MessageEmbed()
-            .setAuthor(message.guild.name, message.guild.iconURL({dynamic: true, size: 2048}))
-            .setColor(message.member.displayHexColor)
-            .addField(`**Shew#1404** Adlı ekibin bilgilendirmesi`, `${miniicon} Toplam kullanıcı miktarı: **${ShewTeam.members.size}**\n${miniicon} Aktif kullanıcı miktarı: **${message.guild.members.cache.filter(x => x.roles.cache.has(ShewTeam.id) && x.user.presence.status !== "offline").size}**\n${miniicon} Seste bulunan aktif kullanıcı miktarı: **${message.guild.members.cache.filter(x => x.roles.cache.has(ShewTeam.id) && x.voice.channel).size}**\n${miniicon} Kullanıcıların sağladığı ses oranı: %**${parseInt(message.guild.members.cache.filter(x => x.roles.cache.has(ShewTeam.id) && x.voice.channel).size / message.guild.members.cache.filter(r => r.roles.cache.has(ShewTeam.id)).size * 100)}**`)
-            .addField(`**THE#0017** Adlı ekibin bilgilendirmesi`, `${miniicon} Toplam kullanıcı miktarı: **${THETeam.members.size}**\n${miniicon} Aktif kullanıcı miktarı: **${message.guild.members.cache.filter(x => x.roles.cache.has(THETeam.id) && x.user.presence.status !== "offline").size}**\n${miniicon} Seste bulunan aktif kullanıcı miktarı: **${message.guild.members.cache.filter(x => x.roles.cache.has(THETeam.id) && x.voice.channel).size}**\n${miniicon} Kullanıcıların sağladığı ses oranı: %**${parseInt(message.guild.members.cache.filter(x => x.roles.cache.has(THETeam.id) && x.voice.channel).size / message.guild.members.cache.filter(r => r.roles.cache.has(THETeam.id)).size * 100)}**`)
+    let bindok = message.guild.roles.cache.get("855159702408396821")
+    let mühür = message.guild.roles.cache.get("855159703293919282")
+    let weare = message.guild.roles.cache.get("934488849952960522")
+    let redbully = message.guild.roles.cache.get("855159733048311818") 
 
-            .setFooter(`Seste bulunan yetkili kullanıcı oranı: %${parseInt(message.guild.members.cache.filter(x => x.roles.cache.has("899273632637919234") && x.voice.channel).size / message.guild.members.cache.filter(x => x.roles.cache.has("899273632637919234")).size * 100)}`)
-            message.channel.send(TeamEmbed).then(m => message.react(this.client.ok))
-        }
-    } //
+        const ekipsesbindok = `${parseInt(message.guild.members.cache.filter(x => x.roles.cache.has(bindok.id) && x.voice.channel).size / message.guild.members.cache.filter(r => r.roles.cache.has(bindok.id)).size * 100)}`
+        const mühürlendiniz = `${parseInt(message.guild.members.cache.filter(x => x.roles.cache.has(mühür.id) && x.voice.channel).size / message.guild.members.cache.filter(r => r.roles.cache.has(mühür.id)).size * 100)}`
+        const seksenüç = `${parseInt(message.guild.members.cache.filter(x => x.roles.cache.has(weare.id) && x.voice.channel).size / message.guild.members.cache.filter(r => r.roles.cache.has(weare.id)).size * 100)}`
+        const ekipsesredbully = `${parseInt(message.guild.members.cache.filter(x => x.roles.cache.has(redbully.id) && x.voice.channel).size / message.guild.members.cache.filter(r => r.roles.cache.has(redbully.id)).size * 100)}`
+         const datas = [
+            {
+                "ekipses": ekipsesbindok,
+                "ekipisim": "1983" 
+            },
+            { 
+                "ekipses": mühürlendiniz,
+                "ekipisim": "Mühür"
+            },
+            { 
+                "ekipses": seksenüç,
+                "ekipisim": "shew"
+            },
+            { 
+                "ekipses": ekipsesredbully,
+                "ekipisim": "Redbully "
+            }, 
+        ]
+const ses = []
+const ekipisim = []
+for ( const item of datas) {
+  ses.push(item.ekipses)
+  ekipisim.push(item.ekipisim)
 }
-// .setFooter(`Sesteki üye oranı: %${parseInt(message.guild.members.cache.filter(x => !x.roles.cache.has("817782383590768671") && !x.roles.cache.has("811564401877975041") && !x.roles.cache.has("812402604990267483") && !x.roles.cache.has("830124107785699351") && !x.roles.cache.has("831266898389630976") && x.voice.channel).size / message.guild.members.cache.filter(x=>x.voice.channel).size * 100)} | Sesteki yetkili oranı: %${parseInt(message.guild.members.cache.filter(x => x.roles.cache.has("809041964611534867") && x.voice.channel).size / message.guild.members.cache.filter(x=>x.roles.cache.has("809041964611534867")).size * 100)}`)
+const width = 500
+const height = 300
+const chartCallBack = (ChartJS) => { }
+const canvas = new ChartJSNodeCanvas({
+  width, 
+  height,
+  chartCallBack
+})
+function getRandomColor() {
+    var letters = '0123456789ABCDEF'.split('');
+    var color = '#';
+    for (var i = 0; i < 6; i++ ) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+        }
+        async function ImageFromData(body, w = 600, h = 290) {
+            return await fromImage(body, w, h);
+        };
+        async function fromImage(config, w, h) {
+            let crs = new ChartJSNodeCanvas({ width: w, height: h });
+            return await crs.renderToBuffer(config);
+        };
+let buffer = await ImageFromData({
+    width: 600,
+    height: 290,
+  type: 'bar',
+  data: { 
+    labels: [].concat(ekipisim),
+    datasets: [
+      { 
+        label: "EKİPLERİN AKTİFLİK GRAFİĞİ", 
+        data: ses,
+        backgroundColor: getRandomColor()
+      }
+    ]
+  }
+})
+//const image = await canvas.renderToBuffer(configs)
+//const attachment = new Discord.MessageAttachment(image)
+let foto;
+let attachments = new MessageAttachment(buffer, "Ozi.png");
+
+let ozi = new MessageEmbed() 
+             .setTimestamp()
+             .setFooter(`Toplam ses ortalaması: %${parseInt(message.guild.members.cache.filter(x => !x.roles.cache.has(bindok.id) && !x.roles.cache.has(mühür.id) && !x.roles.cache.has(weare.id) && !x.roles.cache.has(redbully.id) && x.voice.channel).size / message.guild.members.cache.filter(x=>x.voice.channel).size * 100)}`)
+             .setAuthor(message.guild.name, message.guild.iconURL({ dynamic: true, size: 2048 }))
+             .setImage("attachment://Ozi.png") 
+            .addField(`Shew 1983`,`
+${partner} Toplam Üye : **${message.guild.members.cache.filter(b => b.roles.cache.has(bindok.id)).size}**
+${online} Çevrimiçi Üye : **${message.guild.members.cache.filter(c => c.roles.cache.has(bindok.id) && c.presence && c.presence.status !== 'offline').size}**
+${duyuru} Sesteki Üye: **${message.guild.members.cache.filter(x => x.roles.cache.has(bindok.id) && x.voice.channel).size}**
+${channel} Ses Oranı : \`%${parseInt(message.guild.members.cache.filter(x => x.roles.cache.has(bindok.id) && x.voice.channel).size / message.guild.members.cache.filter(r => r.roles.cache.has(bindok.id)).size * 100)}\` 
+`,true)
+            .addField(`Mühür 1983`,`
+${partner} Toplam Üye : **${message.guild.members.cache.filter(b => b.roles.cache.has(mühür.id)).size}**
+${online} Çevrimiçi Üye : **${message.guild.members.cache.filter(c => c.roles.cache.has(mühür.id) && c.presence && c.presence.status !== 'offline').size}**
+${duyuru} Sesteki Üye: **${message.guild.members.cache.filter(x => x.roles.cache.has(mühür.id) && x.voice.channel).size}**
+${channel} Ses Oranı : \`%${parseInt(message.guild.members.cache.filter(x => x.roles.cache.has(mühür.id) && x.voice.channel).size / message.guild.members.cache.filter(r => r.roles.cache.has(mühür.id)).size * 100)}\` 
+`,true)
+            .addField(`Owner 1983`,`
+${partner} Toplam Üye : **${message.guild.members.cache.filter(b => b.roles.cache.has(weare.id)).size}**
+${online} Çevrimiçi Üye : **${message.guild.members.cache.filter(c => c.roles.cache.has(weare.id) && c.presence && c.presence.status !== 'offline').size}**
+${duyuru} Sesteki Üye: **${message.guild.members.cache.filter(x => x.roles.cache.has(weare.id) && x.voice.channel).size}**
+${channel} Ses Oranı : \`%${parseInt(message.guild.members.cache.filter(x => x.roles.cache.has(weare.id) && x.voice.channel).size / message.guild.members.cache.filter(r => r.roles.cache.has(weare.id)).size * 100)}\` 
+`,true)
+            .addField(`Redbully 1983`,`
+${partner} Toplam Üye : **${message.guild.members.cache.filter(b => b.roles.cache.has(redbully.id)).size}**
+${online} Çevrimiçi Üye : **${message.guild.members.cache.filter(c => c.roles.cache.has(redbully.id) && c.presence && c.presence.status !== 'offline').size}**
+${duyuru} Sesteki Üye: **${message.guild.members.cache.filter(x => x.roles.cache.has(redbully.id) && x.voice.channel).size}**
+${channel} Ses Oranı : \`%${parseInt(message.guild.members.cache.filter(x => x.roles.cache.has(redbully.id) && x.voice.channel).size / message.guild.members.cache.filter(r => r.roles.cache.has(redbully.id)).size * 100)}\` 
+`,true) 
+
+message.channel.send({ embed: ozi, files: [attachments] })
+
+},
+}
