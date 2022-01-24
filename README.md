@@ -17,7 +17,7 @@ Not: Aşağıdaki hata için veya welcome mesaj sorunu için .ytag ekle sil yapm
 
 ![image](https://user-images.githubusercontent.com/92666466/150496311-fa4725af-1d36-4004-b457-bcacfaee238b.png)
 
-
+![image](https://user-images.githubusercontent.com/92666466/150782527-f2fad818-da2a-4f8c-9f2a-4fc442fca688.png)
 ![image](https://user-images.githubusercontent.com/92666466/149677506-fa4dfc92-2815-40ec-bc9b-88675b96cc8a.png)
 ![image](https://user-images.githubusercontent.com/92666466/149625604-1a2b4481-0357-410d-8a01-4c9b209ed56f.png)
 ![image](https://user-images.githubusercontent.com/92666466/148831644-21111585-07a7-4871-8a4a-280c0cdad3e6.png)
