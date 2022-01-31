@@ -19,8 +19,8 @@ oranın ıd alttakı 2 tanesıne gır
     "ChatLeaderBoard": "915725828451606598",
     "VoiceLeaderBoard": "915725828451606598", 
 
-leaderboard kanalında bot ownerı 2 tane . atsın sırasıyla 
-bot 2 tane embed atar 
+leaderboard kanalında bot ownerı 2 tane .say atsın sırasıyla 
+bot 2 tane embedlı say komutu atar bu botun attıklarının mesaj ıdsı lazım bıze
 onların ıd yı sırayla alttakı 2 tane kısma gır
 
     "ChatMsgListID": "928301336158691348",
