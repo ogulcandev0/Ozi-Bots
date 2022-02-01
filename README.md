@@ -1,6 +1,7 @@
 # Ozi Bots
 
 70 Stara Alttaki canvas gelir 
+
 ![image](https://user-images.githubusercontent.com/92666466/151971018-8f8d01b4-07a8-4a48-bd81-282dbb97d958.png)
 
 - Testleri yapılmıştır. Hiçbir hatası bulunmamaktadır starlarınızı bekliyorum yeni github hesabım.
