@@ -53,6 +53,6 @@ module.exports = {
       } else {
         msg.edit(`${message.author}, ${member.toString()} Adlı kullanıcı senin isteğini onaylamadı.`).then(x => x.delete({timeout: 5000}))
       }
-    }).catch(() => msg.edit(`${member.toString()} 30 saniye boyunca cevap vermediği için işlem iptal edildi.`)).then(x => x.delete({timeout: 5000}));
+    }).catch(() => msg.edit(`${member.toString()} 30 saniye boyunca cevap vermediği için işlem iptal edildi.`));
   }
 }
