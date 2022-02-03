@@ -1,5 +1,6 @@
 const Discord = require("discord.js")
 const ayar = require("../../configs/sunucuayar.json")
+const { red , green } = require("../../configs/emojis.json")
 
 module.exports = {
   conf: {
@@ -19,6 +20,6 @@ module.exports = {
         .setDescription("<@"+member+"> adlı kişinin **"+member.voice.channel.name+"** adlı ses kanalından çıkarıldı.")
         .setColor("RANDOM")
         member.voice.kick()
-        message.lineReply(sestensiktirettim).then(message => { message.delete({ timeout : 7500 }) }).then(m => message.react(this.client.ok))  
+        message.lineReply(sestensiktirettim).then(message => { message.delete({ timeout : 7500 }) }).then(m => message.react(green))  
   },
 };
