@@ -1,6 +1,6 @@
 # Ozi Bots
 
-Aşağıdaki canvası 80 90 star olursa paylaşırım <3 Not: 5 tasarım yaptım random seçip veri kartı oluşturuyor...
+Aşağıdaki canvası 70 80 star olursa paylaşırım <3 Not: 5 tasarım yaptım random seçip veri kartı oluşturuyor...
 
 ![image](https://user-images.githubusercontent.com/92666466/152353271-47cc6c6e-d838-478e-9c64-5d0584765351.png)
 
