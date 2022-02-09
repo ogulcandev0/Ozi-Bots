@@ -35,6 +35,7 @@ Not: Aşağıdaki hata için veya welcome mesaj sorunu için .ytag ekle sil yapm
 ![image](https://user-images.githubusercontent.com/92666466/150496311-fa4725af-1d36-4004-b457-bcacfaee238b.png)
 
 Not: Aşağıdaki rol menü sisteminde sol kısımdakiler emoji id isterseniz öyle kalabilir o kısım beğenmezseniz değişirsiniz, sağ kısımlarındaki ise rol idleridir.
+
 ![image](https://user-images.githubusercontent.com/92666466/153303039-09fcfe31-9b33-4dea-a44a-d826c26a3bbc.png)
 ![image](https://user-images.githubusercontent.com/92666466/153302796-7f288c2a-2265-46cc-a553-a56e6c520794.png)
 ![image](https://user-images.githubusercontent.com/92666466/150782527-f2fad818-da2a-4f8c-9f2a-4fc442fca688.png)
