@@ -60,7 +60,6 @@ Sırasıyla .menü <katılım/burc/oyun/renk/iliski> komutları kullanılırsa a
 ![image](https://user-images.githubusercontent.com/92666466/140218451-006119ee-7a23-41ce-8f1d-bf8c42f0b560.png)
 ![image](https://user-images.githubusercontent.com/92666466/139575596-53f98cee-5570-4bff-ad13-20393edb2470.png)
 ![image](https://user-images.githubusercontent.com/92666466/139575362-1562a395-5352-4528-b336-5400ef7abe11.png)
-![image](https://user-images.githubusercontent.com/92666466/139575369-b977aef8-b890-451f-bb9b-b6797ab6cc67.png)
 ![image](https://user-images.githubusercontent.com/92666466/149665315-df680409-b4eb-44a6-bb93-f1fb10216f83.png)
 ![image](https://user-images.githubusercontent.com/92666466/139575381-c6cef99a-3dd2-4c43-b208-e7faa3233774.png)
 ![image](https://user-images.githubusercontent.com/92666466/139575656-0f8e35da-e696-4a6a-a3c7-5342af53de8d.png)
