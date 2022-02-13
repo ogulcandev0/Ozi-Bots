@@ -48,11 +48,15 @@ module.exports = {
   .setDescription("💳 Fiyat : 150.000 💰")
 
 
-  let market = new disbut.MessageMenu();
-  market.setID("market");
-  market.setPlaceholder(`Ürünlerimizi listelemek için tıklayın.`)
-  market.addOptions(spotify,netflix,youtube,cnitro,bnitro);
- 
+  let market = new disbut.MessageMenu()
+  .setID("market")
+  .setPlaceholder(`Ürünlerimizi listelemek için tıklayın.`)
+  .addOption(spotify)
+  .addOption(netflix)
+  .addOption(youtube)
+  .addOption(cnitro)
+  .addOption(bnitro)
+
 
    const MenuMessage = await message.channel.send(`:tada: **${message.guild.name} Mağazasına Hoşgeldiniz!**
 
@@ -72,10 +76,10 @@ module.exports = {
 
       if(40000 > dolarData.dolar) 
       {
-       MenuMessage.edit(`\`Spotify Premium\` ürününü almak için **Dolar**'ın yetersiz!\n\n💰 Dolarınız : **${dolarData ? Math.floor(parseInt(dolarData.dolar)) : 0}**`, { components : null })
+       menu.reply.send("\`Spotify Premium\` ürününü almak için **Dolar**'ın yetersiz!", true)
           return
       }
-       MenuMessage.edit(`:tada: Tebrikler! Başarıyla \`Spotify Premium\` ürününü satın aldınız! Yetkililer en kısa zaman da sizinle iletişime geçecektir!`, { components : null })
+       menu.reply.send(":tada: Tebrikler! Başarıyla \`Spotify Premium\` ürününü satın aldınız! Yetkililer en kısa zaman da sizinle iletişime geçecektir!", true)
        client.channels.cache.get(conf.marketLog).send(`${menu.clicker.member.toString()} kişisi \`Spotify Premium\` ürününü satın aldı. İletişime geçmenizi bekliyor! :tada:`)
       await dolar.findOneAndUpdate({ guildID: ayar.guildID, userID: menu.clicker.member.id }, { $inc: { dolar: -40000 } }, { upsert: true });
     }
@@ -86,10 +90,10 @@ module.exports = {
 
     if(50000 > dolarData.dolar) 
     {
-        MenuMessage.edit(`\`Netflix UHD\` ürününü almak için **Dolar**'ın yetersiz!\n\n💰 Dolarınız : **${dolarData ? Math.floor(parseInt(dolarData.dolar)) : 0}**`, { components : null })
+        menu.reply.send("\`Netflix UHD\` ürününü almak için **Dolar**'ın yetersiz!", true)
         return
     }
-        MenuMessage.edit(`:tada: Tebrikler! Başarıyla \`Netflix UHD\` ürününü satın aldınız! Yetkililer en kısa zaman da sizinle iletişime geçecektir!`, { components : null })
+        menu.reply.send(":tada: Tebrikler! Başarıyla \`Netflix UHD\` ürününü satın aldınız! Yetkililer en kısa zaman da sizinle iletişime geçecektir!", true)
      client.channels.cache.get(conf.marketLog).send(`${menu.clicker.member.toString()} kişisi \`Netflix UHD\` ürününü satın aldı. İletişime geçmenizi bekliyor! :tada:`)
     await dolar.findOneAndUpdate({ guildID: ayar.guildID, userID: menu.clicker.member.id }, { $inc: { dolar: -50000 } }, { upsert: true });
   }
@@ -100,10 +104,10 @@ module.exports = {
 
     if(60000 > dolarData.dolar) 
     {
-        MenuMessage.edit(`\`Youtube Premium\` ürününü almak için **Dolar**'ın yetersiz!\n\n💰 Dolarınız : **${dolarData ? Math.floor(parseInt(dolarData.dolar)) : 0}**`, { components : null })
+        menu.reply.send("\`Youtube Premium\` ürününü almak için **Dolar**'ın yetersiz!", true)
         return
     }
-        MenuMessage.edit(`:tada: Tebrikler! Başarıyla \`Youtube Premium\` ürününü satın aldınız! Yetkililer en kısa zaman da sizinle iletişime geçecektir!`, { components : null })
+        menu.reply.send(":tada: Tebrikler! Başarıyla \`Youtube Premium\` ürününü satın aldınız! Yetkililer en kısa zaman da sizinle iletişime geçecektir!", true)
     client.channels.cache.get(conf.marketLog).send(`${menu.clicker.member.toString()} kişisi \`Youtube Premium\` ürününü satın aldı. İletişime geçmenizi bekliyor! :tada:`)
     await dolar.findOneAndUpdate({ guildID: ayar.guildID, userID: menu.clicker.member.id }, { $inc: { dolar: -60000 } }, { upsert: true });
   }
@@ -114,10 +118,10 @@ if (menu.values[0] === "ozicnitro") {
 
   if(125000 > dolarData.dolar) 
   {
-      MenuMessage.edit(`\`Classic Nitro\` ürününü almak için **Dolar**'ın yetersiz!\n\n💰 Dolarınız : **${dolarData ? Math.floor(parseInt(dolarData.dolar)) : 0}**`, { components : null })
+      menu.reply.send("\`Classic Nitro\` ürününü almak için **Dolar**'ın yetersiz!", true)
       return
   }
-      MenuMessage.edit(`:tada: Tebrikler! Başarıyla \`Classic Nitro\` ürününü satın aldınız! Yetkililer en kısa zaman da sizinle iletişime geçecektir!`, { components : null })
+      menu.reply.send(":tada: Tebrikler! Başarıyla \`Classic Nitro\` ürününü satın aldınız! Yetkililer en kısa zaman da sizinle iletişime geçecektir!", true)
    client.channels.cache.get(conf.marketLog).send(`${menu.clicker.member.toString()} kişisi \`Classic Nitro\` ürününü satın aldı. İletişime geçmenizi bekliyor! :tada:`)
   await dolar.findOneAndUpdate({ guildID: ayar.guildID, userID: menu.clicker.member.id }, { $inc: { dolar: -125000 } }, { upsert: true });
 }
@@ -128,10 +132,10 @@ if (menu.values[0] === "ozibnitro") {
 
   if(150000 > dolarData.dolar) 
   {
-      MenuMessage.edit(`\`Boostlu Nitro\` ürününü almak için **Dolar**'ın yetersiz!\n\n💰 Dolarınız : **${dolarData ? Math.floor(parseInt(dolarData.dolar)) : 0}**`, { components : null })
+      menu.reply.send("\`Boostlu Nitro\` ürününü almak için **Dolar**'ın yetersiz!", true)
       return
   }
-      MenuMessage.edit(`:tada: Tebrikler! Başarıyla \`Boost Nitro\` ürününü satın aldınız! Yetkililer en kısa zaman da sizinle iletişime geçecektir!`, { components : null })
+      menu.reply.send(":tada: Tebrikler! Başarıyla \`Boost Nitro\` ürününü satın aldınız! Yetkililer en kısa zaman da sizinle iletişime geçecektir!", true)
    client.channels.cache.get(conf.marketLog).send(`${menu.clicker.member.toString()} kişisi \`Boostlu Nitro\` ürününü satın aldı. İletişime geçmenizi bekliyor! :tada:`)
   await dolar.findOneAndUpdate({ guildID: ayar.guildID, userID: menu.clicker.member.id }, { $inc: { dolar: -150000 } }, { upsert: true });
 }
