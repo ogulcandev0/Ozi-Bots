@@ -61,6 +61,16 @@ client
   .then(() => console.log("Bot Başarıyla Bağlandı!"))
   .catch(() => console.log("[HATA] Bot Bağlanamadı!"));
 
+  process.on("uncaughtException", err => {
+    const errorMsg = err.stack.replace(new RegExp(`${__dirname}/`, "g"), "./");
+    console.error("Beklenmedik yakalanamayan hata: ", errorMsg);
+    process.exit(1);
+  });
+  
+  process.on("unhandledRejection", err => {
+    console.error("Promise Hatası: ", err);
+  });
+
 setInterval(() => {
   let GuildID = "899273632436592701"
   let OneMonth = "901908110619340820"
