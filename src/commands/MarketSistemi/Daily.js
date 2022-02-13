@@ -1,7 +1,7 @@
 const Discord = require('discord.js') 
 const ozi = require("../../schemas/dolar");
-const { altin, altin2 } = require("../../configs/emojis.json")
-let limit = new Map();
+const { altin, altin2, rewards } = require("../../configs/emojis.json")
+let ms = require("parse-ms");
 
 module.exports = {
     conf: {
@@ -17,36 +17,17 @@ run: async (client, message, args) => {
 		let kanallar = ["coin-komut", "bot-commands"]
 	if (!kanallar.includes(message.channel.name)) return message.lineReply(`${kanallar.map(x => `${client.channels.cache.find(chan => chan.name == x)}`)} kanallarında kullanabilirsiniz.`).then(x => x.delete({timeout: 10000}));
 	
-	
-    let randomizeDolar = Math.floor(Math.random() * 450) + 1
-     ozi.findOne({guildID: message.guild.id, userID: message.author.id}, async(err, data) => { 
- 
-    
-        let timeout = 1000*60*60*24
-        let gunluk = data.dolarTime
-        if (gunluk !== null && timeout - (Date.now() - gunluk) > 0) {
-            let time = ms(timeout - (Date.now() - gunluk));
-            message.reply(`Hey! Dur, günlük hediyeni zaten almışsın. Günlük hediyeni tekrardan alabilmen için ${time.hours} saat ${time.minutes} dakika ${time.seconds} saniye daha beklemelisin.`)
-        } else { 
-                data.dolarTime = Date.now() 
-                data.dolar = (data.dolar + randomizeDolar)
-                data.save();
-            message.reply(`${altin2}| Bugünlük **${randomizeDolar}** dolar aldın!`)
-        }   
-        
-    }) 
-}}
- 
- 
+	let data = await ozi.findOne({userID: message.author.id, guildID: message.guild.id});
+  if(!data) return message.lineReply(`Hey! Günlük hediye almak ve oyunlarımızı oynamak için coin hesabı oluşturman gerekiyor.\n**!hesapoluştur** yazarak kendi hesabını oluşturabilirsin.`)
 
-function ms(milliseconds) {
-    return {
-        days: Math.trunc(milliseconds / 86400000),
-        hours: Math.trunc(milliseconds / 3600000) % 24,
-        minutes: Math.trunc(milliseconds / 60000) % 60,
-        seconds: Math.trunc(milliseconds / 1000) % 60,
-        milliseconds: Math.trunc(milliseconds) % 1000,
-        microseconds: Math.trunc(milliseconds * 1000) % 1000,
-        nanoseconds: Math.trunc(milliseconds * 1e6) % 1000
-    };
-}
+    let timeout = 1000*60*60*24
+    const sayi = Math.floor(Math.random() * 450) + 1
+    let gunluk = data.dolarTime
+    if (gunluk !== null && timeout - (Date.now() - gunluk) > 0) {
+        let time = ms(timeout - (Date.now() - gunluk));
+        message.channel.send(`:stopwatch: **|** Hata! **${message.author.username}** Bu komutu ${time.hours} saat ${time.minutes} dakika ${time.seconds} saniye sonra kullanabilirsin.`)
+    } else {
+        await ozi.findOneAndUpdate({userID: message.author.id, guildID: message.guild.id}, {$inc: {dolar: sayi}, $set: {dolarTime: Date.now()}}, {upsert: true})
+        message.channel.send(`${rewards} **|** Başarılı bir şekilde günlük ödülünü aldın. (Ödülün: **${sayi}** ${altin2} )`)
+    }  
+}}
