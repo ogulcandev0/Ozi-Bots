@@ -75,13 +75,13 @@ const inviterData = await inviterSchema.findOne({ guildID: message.guild.id, use
     .setLabel("Genel Puan Detayları")
     .setID("genel_puan_detaylari")
     .setStyle("blurple")
-    .setEmoji("915754670931193917")
+    .setEmoji("943107807312482304")
 
     var Iptal = new MessageButton()
     .setLabel("İptal")
     .setID("iptal_button")
     .setStyle("red")
-    .setEmoji("915754675742081076")
+    .setEmoji("920412153712889877")
 
     const row = new MessageActionRow()
     .addComponents(PuanDetaylari, GenelPuanDetaylari, Iptal)
