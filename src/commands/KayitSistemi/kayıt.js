@@ -92,7 +92,7 @@ run: async (client, message, args, embed, prefix) => {
     .setID("İPTAL")
     .setLabel("İptal")
     .setStyle("red")
-    .setEmoji("915754675742081076")
+    .setEmoji("920412153712889877")
 
     let erkekRol = conf.erkekRolleri;
     let kadinRol = conf.kizRolleri;
