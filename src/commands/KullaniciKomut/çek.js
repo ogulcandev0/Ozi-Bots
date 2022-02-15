@@ -30,7 +30,7 @@ run: async (client, message, args, embed, prefix) => {
       .setID("red")
       .setLabel("Reddet")
       .setStyle("red")
-      .setEmoji("915754675742081076")
+      .setEmoji("920412153712889877")
 
       var işlembaşarılı = new MessageButton()
       .setID("başarılı")
