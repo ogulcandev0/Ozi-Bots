@@ -1,10 +1,11 @@
 const { MessageEmbed, Client, Message } = require("discord.js");
 const Discord = require('discord.js');
-const disbut = require("discord-buttons");
+const { MessageButton, MessageActionRow } = require('discord-buttons');
 const dolar = require("../../schemas/dolar")
 const conf = require("../../configs/sunucuayar.json")
 const ayar = require("../../configs/settings.json")
-const { red, green, rewards } = require("../../configs/emojis.json")
+const { red, green, star } = require("../../configs/emojis.json")
+const table = require("table");
 
 module.exports = {
     conf: {
@@ -13,134 +14,237 @@ module.exports = {
       help: "market"
     },
 
- run: async (client, message) => {
+ run: async (client, message, embed) => {
 
   let dolarData = await dolar.findOne({ guildID: message.guild.id, userID: message.author.id });  
 
-  let spotify = new disbut.MessageMenuOption()
-  .setLabel("Ürün : Spotify Premium")
-  .setValue("ozispotify")
+  let spotify = new MessageButton()
+  .setStyle('green')
+  .setLabel("Spotify Premium")
+  .setID("ozispotify")
   .setEmoji("941993326700265512")
-  .setDescription("💳 Fiyat : 40.000 💰")
 
-  let netflix = new disbut.MessageMenuOption()
-  .setLabel("Ürün : Netflix UHD")
-  .setValue("ozinetflix")
+  let netflix = new MessageButton()
+  .setStyle('green')
+  .setLabel("Netflix UHD")
+  .setID("ozinetflix")
   .setEmoji("941993358518284298")
-  .setDescription("💳 Fiyat : 50.000 💰")
 
-  let youtube = new disbut.MessageMenuOption()
-  .setLabel("Ürün : Youtube Premium")
-  .setValue("oziyoutube")
+  let youtube = new MessageButton()
+  .setStyle('green')
+  .setLabel("Youtube Premium")
+  .setID("oziyoutube")
   .setEmoji("941993963013935115")
-  .setDescription("💳 Fiyat : 60.000 💰")
 
-  let cnitro = new disbut.MessageMenuOption()
-  .setLabel("Ürün : Classic Nitro")
-  .setValue("ozicnitro")
+  let cnitro = new MessageButton()
+  .setStyle('green')
+  .setLabel("Discord Classic Nitro")
+  .setID("ozicnitro")
   .setEmoji("941993712978890752")
-  .setDescription("💳 Fiyat : 125.000 💰")
 
-  let bnitro = new disbut.MessageMenuOption()
-  .setLabel("Ürün : Boost Nitro")
-  .setValue("ozibnitro")
+  let bnitro = new MessageButton()
+  .setStyle('green')
+  .setLabel("Discord Boost Nitro")
+  .setID("ozibnitro")
   .setEmoji("941993742934614047")
-  .setDescription("💳 Fiyat : 150.000 💰")
+
+  var çıkış = new MessageButton()
+  .setStyle('red')
+  .setLabel('Market Çıkış')
+  .setID('çıkış')
+  .setEmoji("920412153712889877");
 
 
-  let market = new disbut.MessageMenu()
-  .setID("market")
-  .setPlaceholder(`Ürünlerimizi listelemek için tıklayın.`)
-  .addOption(spotify)
-  .addOption(netflix)
-  .addOption(youtube)
-  .addOption(cnitro)
-  .addOption(bnitro)
+ if (dolarData.dolar > 40000) {
+    spotify.setStyle('green');
+  } else {
+    spotify.setStyle('grey').setDisabled(true);
+  }
+
+ if (dolarData.dolar > 50000) {
+    netflix.setStyle('green');
+  } else {
+    netflix.setStyle('grey').setDisabled(true);
+  }
+
+ if (dolarData.dolar > 60000) {
+    youtube.setStyle('green');
+  } else {
+    youtube.setStyle('grey').setDisabled(true);
+  }
+
+ if (dolarData.dolar > 125000) {
+    cnitro.setStyle('green');
+  } else {
+    cnitro.setStyle('grey').setDisabled(true);
+  }
+
+ if (dolarData.dolar > 150000) {
+    bnitro.setStyle('green');
+  } else {
+    bnitro.setStyle('grey').setDisabled(true);
+  }
 
 
-   const MenuMessage = await message.channel.send(`:tada: **${message.guild.name} Mağazasına Hoşgeldiniz!**
+   const market = new MessageActionRow()
+  .addComponents([ spotify, netflix, youtube ]);
 
-💰 Dolarınız : **${dolarData ? Math.floor(parseInt(dolarData.dolar)) : 0}**
-
-   `, market);
-  
-   const filter = (menu) => menu.clicker.user.id === message.author.id;
-   const Collector = MenuMessage.createMenuCollector(filter, { time: 9999999 });
+   const market2 = new MessageActionRow()
+  .addComponents([ cnitro, bnitro, çıkış ]);
 
 
-   Collector.on("collect", async (menu) => {
+  let urundata = [
+        { Id: "1", urunAdi: "Spotify Premium", urunDetayi: "1 Ay", urunFiyati: "40000"},
+        { Id: "2", urunAdi: "Netflix UHD", urunDetayi: "1 Ay", urunFiyati: "50000"},
+        { Id: "3", urunAdi: "Youtube Premium", urunDetayi: "3 Ay", urunFiyati: "60000"},
+        { Id: "4", urunAdi: "Discord Classic Nitro", urunDetayi: "1 Ay", urunFiyati: "125000"},
+        { Id: "5", urunAdi: "Discord Boostlu Nitro", urunDetayi: "1 Ay", urunFiyati: "150000"}
+    ]
 
-  let dolarData = await dolar.findOne({ guildID: ayar.guildID, userID: menu.clicker.user.id });  
+    let urunler = [["ID", "Ürün İsmi", "Ürün Detayı" ,"Ürün Fiyatı"]];
+       urunler = urunler.concat(urundata.map(value => { 
+         let urunfiyatioku = `${value.urunFiyati} 💵`	
+          return [
+          `#${value.Id}`,
+          `${value.urunAdi}`,
+          `${value.urunDetayi}`,
+          `${urunfiyatioku}`
+        ]
+    }))
 
-    if (menu.values[0] === "ozispotify") {
 
-      if(40000 > dolarData.dolar) 
-      {
-       menu.reply.send("\`Spotify Premium\` ürününü almak için **Dolar**'ın yetersiz!", true)
-          return
+    let ozi = new MessageEmbed()
+.setDescription(`\n🤑 **${message.guild.name}** mağazasına hoş geldin ${message.member}, \nBurada kendine çeşitli eşyalar ve sunucumuz için işine yarayabilecek \nbelirli özelliklerden satın alabilirsin.`)
+.addField(`${star} Mağaza (\`Bakiye: ${dolarData ? Math.floor(parseInt(dolarData.dolar)) : 0} 💵\`)`,`\`\`\`css
+${table.table(urunler, {
+          border: table.getBorderCharacters(`void`),
+          columnDefault: {
+            paddingLeft: 0,
+            paddingRight: 1,
+        },
+        columns: {
+          0: {
+              paddingLeft: 1
+          },
+          1: {
+              paddingLeft: 1
+          },
+          2: {
+              paddingLeft: 1,
+              alignment: "center"
+          },
+          3: {
+              paddingLeft: 1,
+              paddingRight: 1,
+          },
+      },
+
+        /**
+        * @typedef {function} drawHorizontalLine
+        * @param {number} index
+        * @param {number} size
+        * @return {boolean}
+        */
+
+        drawHorizontalLine: (index, size) => {
+          return index === 0 || index === 1 || index === size;
       }
-       menu.reply.send(":tada: Tebrikler! Başarıyla \`Spotify Premium\` ürününü satın aldınız! Yetkililer en kısa zaman da sizinle iletişime geçecektir!", true)
-       client.channels.cache.get(conf.marketLog).send(`${menu.clicker.member.toString()} kişisi \`Spotify Premium\` ürününü satın aldı. İletişime geçmenizi bekliyor! :tada:`)
-      await dolar.findOneAndUpdate({ guildID: ayar.guildID, userID: menu.clicker.member.id }, { $inc: { dolar: -40000 } }, { upsert: true });
-    }
-    
+      })}\`\`\``)
+.addField(`${star} Ürün nasıl satın alabilirim?`,`Aşağıda beliren butonlardan yeşil olanlara \`30 Saniye\` içerisinde tıklayarak satın alabilirsin.`)
+   
+let jaylen = await message.channel.send(ozi, { components: [market, market2] });
+    var filter = (button) => button.clicker.user.id === message.author.id;
+   
+    let collector = await jaylen.createButtonCollector(filter, { time: 30000 })
 
+      collector.on("collect", async (button) => {
 
-  if (menu.values[0] === "ozinetflix") {
+    if (button.id === "ozispotify") {
 
-    if(50000 > dolarData.dolar) 
-    {
-        menu.reply.send("\`Netflix UHD\` ürününü almak için **Dolar**'ın yetersiz!", true)
-        return
-    }
-        menu.reply.send(":tada: Tebrikler! Başarıyla \`Netflix UHD\` ürününü satın aldınız! Yetkililer en kısa zaman da sizinle iletişime geçecektir!", true)
-     client.channels.cache.get(conf.marketLog).send(`${menu.clicker.member.toString()} kişisi \`Netflix UHD\` ürününü satın aldı. İletişime geçmenizi bekliyor! :tada:`)
-    await dolar.findOneAndUpdate({ guildID: ayar.guildID, userID: menu.clicker.member.id }, { $inc: { dolar: -50000 } }, { upsert: true });
-  }
-  
-  
+      let spotify = new MessageEmbed()
+.setDescription(`:tada: Tebrikler! Başarıyla \`Spotify Premium\` ürününü satın aldınız! Yetkililer en kısa zaman da sizinle iletişime geçecektir!`)
+.setFooter(`Satın Alma İşlemi Başarılı`)
+.setTimestamp()
+.setAuthor(button.clicker.member.displayName, button.clicker.user.displayAvatarURL({ dynamic: true }))
+.setThumbnail(button.clicker.user.displayAvatarURL({ dynamic: true, size: 2048 }))
 
-  if (menu.values[0] === "oziyoutube") {
+          client.channels.cache.get(conf.marketLog).send(`${button.clicker.member.toString()} kişisi \`Spotify Premium\` ürününü satın aldı. İletişime geçmenizi bekliyor! :tada:`)
+         await dolar.findOneAndUpdate({ guildID: ayar.guildID, userID: button.clicker.member.id }, { $inc: { dolar: -40000 } }, { upsert: true });
+         
+      
+      jaylen.edit({components: null, embed: spotify}); 
 
-    if(60000 > dolarData.dolar) 
-    {
-        menu.reply.send("\`Youtube Premium\` ürününü almak için **Dolar**'ın yetersiz!", true)
-        return
-    }
-        menu.reply.send(":tada: Tebrikler! Başarıyla \`Youtube Premium\` ürününü satın aldınız! Yetkililer en kısa zaman da sizinle iletişime geçecektir!", true)
-    client.channels.cache.get(conf.marketLog).send(`${menu.clicker.member.toString()} kişisi \`Youtube Premium\` ürününü satın aldı. İletişime geçmenizi bekliyor! :tada:`)
-    await dolar.findOneAndUpdate({ guildID: ayar.guildID, userID: menu.clicker.member.id }, { $inc: { dolar: -60000 } }, { upsert: true });
-  }
-  
-  
+        }
 
-if (menu.values[0] === "ozicnitro") {
+      if (button.id === "ozinetflix") {
 
-  if(125000 > dolarData.dolar) 
-  {
-      menu.reply.send("\`Classic Nitro\` ürününü almak için **Dolar**'ın yetersiz!", true)
-      return
-  }
-      menu.reply.send(":tada: Tebrikler! Başarıyla \`Classic Nitro\` ürününü satın aldınız! Yetkililer en kısa zaman da sizinle iletişime geçecektir!", true)
-   client.channels.cache.get(conf.marketLog).send(`${menu.clicker.member.toString()} kişisi \`Classic Nitro\` ürününü satın aldı. İletişime geçmenizi bekliyor! :tada:`)
-  await dolar.findOneAndUpdate({ guildID: ayar.guildID, userID: menu.clicker.member.id }, { $inc: { dolar: -125000 } }, { upsert: true });
+      let netflix = new MessageEmbed()
+.setDescription(`:tada: Tebrikler! Başarıyla \`Netflix UHD\` ürününü satın aldınız! Yetkililer en kısa zaman da sizinle iletişime geçecektir!`)
+.setFooter(`Satın Alma İşlemi Başarılı`)
+.setTimestamp()
+.setAuthor(button.clicker.member.displayName, button.clicker.user.displayAvatarURL({ dynamic: true }))
+.setThumbnail(button.clicker.user.displayAvatarURL({ dynamic: true, size: 2048 }))
+
+          client.channels.cache.get(conf.marketLog).send(`${button.clicker.member.toString()} kişisi \`Netflix UHD\` ürününü satın aldı. İletişime geçmenizi bekliyor! :tada:`)
+         await dolar.findOneAndUpdate({ guildID: ayar.guildID, userID: button.clicker.member.id }, { $inc: { dolar: -50000 } }, { upsert: true });
+         
+      jaylen.edit({components: null, embed: netflix}); 
+
+        }
+
+      if (button.id === "oziyoutube") {
+
+      let youtube = new MessageEmbed()
+.setDescription(`:tada: Tebrikler! Başarıyla \`Youtube Premium\` ürününü satın aldınız! Yetkililer en kısa zaman da sizinle iletişime geçecektir!`)
+.setFooter(`Satın Alma İşlemi Başarılı`)
+.setTimestamp()
+.setAuthor(button.clicker.member.displayName, button.clicker.user.displayAvatarURL({ dynamic: true }))
+.setThumbnail(button.clicker.user.displayAvatarURL({ dynamic: true, size: 2048 }))
+
+          client.channels.cache.get(conf.marketLog).send(`${button.clicker.member.toString()} kişisi \`Youtube Premium\` ürününü satın aldı. İletişime geçmenizi bekliyor! :tada:`)
+         await dolar.findOneAndUpdate({ guildID: ayar.guildID, userID: button.clicker.member.id }, { $inc: { dolar: -60000 } }, { upsert: true });
+
+      jaylen.edit({components: null, embed: youtube}); 
+
+        }
+
+       if (button.id === "ozicnitro") {
+
+      let cnitro = new MessageEmbed()
+.setDescription(`:tada: Tebrikler! Başarıyla \`Discord Classic Nitro\` ürününü satın aldınız! Yetkililer en kısa zaman da sizinle iletişime geçecektir!`)
+.setFooter(`Satın Alma İşlemi Başarılı`)
+.setTimestamp()
+.setAuthor(button.clicker.member.displayName, button.clicker.user.displayAvatarURL({ dynamic: true }))
+.setThumbnail(button.clicker.user.displayAvatarURL({ dynamic: true, size: 2048 }))
+
+          client.channels.cache.get(conf.marketLog).send(`${button.clicker.member.toString()} kişisi \`Classic Nitro\` ürününü satın aldı. İletişime geçmenizi bekliyor! :tada:`)
+         await dolar.findOneAndUpdate({ guildID: ayar.guildID, userID: button.clicker.member.id }, { $inc: { dolar: -125000 } }, { upsert: true });
+
+      jaylen.edit({components: null, embed: cnitro}); 
+
+        }
+
+      if (button.id === "ozibnitro") {
+
+      let bnitro = new MessageEmbed()
+.setDescription(`:tada: Tebrikler! Başarıyla \`Discord Nitro Boost\` ürününü satın aldınız! Yetkililer en kısa zaman da sizinle iletişime geçecektir!`)
+.setFooter(`Satın Alma İşlemi Başarılı`)
+.setTimestamp()
+.setAuthor(button.clicker.member.displayName, button.clicker.user.displayAvatarURL({ dynamic: true }))
+.setThumbnail(button.clicker.user.displayAvatarURL({ dynamic: true, size: 2048 }))
+
+          client.channels.cache.get(conf.marketLog).send(`${button.clicker.member.toString()} kişisi \`Boostlu Nitro\` ürününü satın aldı. İletişime geçmenizi bekliyor! :tada:`)
+         await dolar.findOneAndUpdate({ guildID: ayar.guildID, userID: button.clicker.member.id }, { $inc: { dolar: -150000 } }, { upsert: true });
+
+      jaylen.edit({components: null, embed: bnitro}); 
+
+        }
+
+      if (button.id == "çıkış") {
+          button.message.delete({ timeout: 1500 });
+        }
+
 }
+)}
 
-
-
-if (menu.values[0] === "ozibnitro") {
-
-  if(150000 > dolarData.dolar) 
-  {
-      menu.reply.send("\`Boostlu Nitro\` ürününü almak için **Dolar**'ın yetersiz!", true)
-      return
-  }
-      menu.reply.send(":tada: Tebrikler! Başarıyla \`Boost Nitro\` ürününü satın aldınız! Yetkililer en kısa zaman da sizinle iletişime geçecektir!", true)
-   client.channels.cache.get(conf.marketLog).send(`${menu.clicker.member.toString()} kişisi \`Boostlu Nitro\` ürününü satın aldı. İletişime geçmenizi bekliyor! :tada:`)
-  await dolar.findOneAndUpdate({ guildID: ayar.guildID, userID: menu.clicker.member.id }, { $inc: { dolar: -150000 } }, { upsert: true });
-}
-
-});
-
-},
-}
+}  
