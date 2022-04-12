@@ -1,19 +1,12 @@
 # Ozi Bots
 
-Aşağıdaki canvası 70 80 star olursa paylaşırım <3 Not: 5 tasarım yaptım random seçip veri kartı oluşturuyor...
-
-![image](https://user-images.githubusercontent.com/92666466/152353271-47cc6c6e-d838-478e-9c64-5d0584765351.png)
-
 - Testleri yapılmıştır. Hiçbir hatası bulunmamaktadır starlarınızı bekliyorum yeni github hesabım.
 - Sizlerle geliştirmiş olduğum botlardan biriyle tanıştırmak istiyorum.. 
 - Invite, Moderasyon, Butonlu Register /Oto Register, Stats, Buton sistemleri.
 
-# Ekip Version
-[Ozi-Bots-Ekip](https://github.com/JaylenOzi/Ozi-Bots-Ekip)  
-
 # Yapmanız gereken adımlar
 
-- Events Select Menu de ki rol idleri doldurmanız lazım, emoji sunucu ayar vesaire ayarladıktan sonra baslatmaya geldik npm i yapıyoruz ardından axios modülü yüklenmediği için npm i axios yapiyoruz eğer canvas yüklenmezse bazılarında hata oluyomus npm i canvas yapabilirsiniz botunuz hazır esenlikle kalın.
+- Config vesaire ayarladıktan sonra baslatmaya geldik npm i yapıyoruz ardından axios modülü yüklenmediği için npm i axios yapiyoruz eğer canvas yüklenmezse bazılarında hata oluyomus npm i canvas yapabilirsiniz botunuz hazır esenlikle kalın.
 
 Not: Yeni Eklediğim LeaderBoard Güncelleme 
 
