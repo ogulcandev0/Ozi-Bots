@@ -3,6 +3,7 @@
 - Testleri yapılmıştır. Hiçbir hatası bulunmamaktadır starlarınızı bekliyorum yeni github hesabım.
 - Sizlerle geliştirmiş olduğum botlardan biriyle tanıştırmak istiyorum.. 
 - Invite, Moderasyon, Butonlu Register /Oto Register, Stats, Buton sistemleri.
+- Biliyorum sadece 4 dakikamı alan bir hata ama .cash komutu hatalı değil fotorafı hatalı benden size kopyalayın kullanın https://media.discordapp.net/attachments/980843521370103848/1028276375783747654/20221008_150426.jpg
 
 # Yapmanız gereken adımlar
 
